@@ -22,7 +22,7 @@ class PostService {
 
     async getListing(token){
         try {
-          const response =  axios.get(`${this.url}/`,{
+          const response = await axios.get(`${this.url}/`,{
                 headers : {
                     Authorization : `Bearer ${token}`
                 }
@@ -30,6 +30,47 @@ class PostService {
             return response
         } catch (error) {
             console.error("Get Listing Error" , error.response?.data || error.message)
+        }
+    }
+
+    async userListing (token){
+       try {
+          const response = await axios.get(`${this.url}/userLists` , {
+            headers : {
+                Authorization : `Bearer ${token}`
+            }
+          })
+          return response;
+       } catch (error) {
+        console.error("User Listing Error" , error.response?.data || error.message)
+       }
+    }
+
+    async deleteProperty (id , token){
+        try {
+            console.log(token);
+          const res = await axios.delete(`${this.url}/deleteProperty` ,  {
+              data : {id},
+                headers :{
+                    Authorization : `Bearer ${token}`
+                }
+            })
+         return res;
+        } catch (error) {
+            console.error("delete Property Error" , error.response?.data || error.message)
+        }
+    }
+
+    async getProperty (id , token){
+        try {
+          const res =  await axios.get(`${this.url}/${id}` ,{
+            headers : {
+                Authorization : `Bearer ${token}`
+            }
+          })
+          return res;
+        } catch (error) {
+            console.error("Get Property Error" , error.response?.data || error.message)
         }
     }
 }

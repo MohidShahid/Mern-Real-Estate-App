@@ -1,8 +1,8 @@
 import { BedDouble, LandPlot, MapPinHouseIcon, Bath } from "lucide-react";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import 'swiper/css'; // Import Swiper styles
-import 'swiper/css/pagination'; // Import Swiper pagination styles
+import { Link } from "react-router-dom";
+
 
 function ProductCard({ data }) {
   // Ensure data and its nested properties exist before trying to access them
@@ -19,6 +19,7 @@ function ProductCard({ data }) {
     description,
     features,
     location,
+    _id,
   } = data;
 
   // Provide default values for nested objects to prevent errors if they are missing
@@ -27,7 +28,7 @@ function ProductCard({ data }) {
 
 
   return (
-    <div className="flex flex-col items-start justify-center w-96 h-auto border rounded-lg shadow-md overflow-hidden">
+    <Link to={`/property-detail/${_id}`} className="flex flex-col items-start justify-center w-96 h-auto border rounded-lg shadow-md overflow-hidden">
       <div className="w-full relative">
         <Swiper
           modules={[Pagination]}
@@ -94,7 +95,7 @@ function ProductCard({ data }) {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

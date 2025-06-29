@@ -68,7 +68,7 @@ function Navbar() {
             <span className="badge">New</span>
           </Link>
         </li>
-        <li><Link>Settings</Link></li>
+        <li><Link to={'/user-listing'}>Settings</Link></li>
         <li><Link onClick={()=> logout()}>Logout</Link></li>
       </ul>
     </div>

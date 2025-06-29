@@ -7,6 +7,8 @@ import Profile from './Pages/Profile'
 import PostProperty from './Pages/PostProperty'
 import Properties from './Pages/Properties'
 import Protected from './Pages/Protected'
+import Setting from './Pages/Setting'
+import PropertyDetail from './Pages/PropertyDetail'
 
 function AppRoutes() {
   return (
@@ -17,8 +19,11 @@ function AppRoutes() {
         <Route path="/profile" element={<Protected><Profile /></Protected>} />   
         <Route path='/login' element={<Login />} /> 
         <Route path='/signup' element={<Signup />} />
+        <Route path='/postproperty/:id' element={<Protected><PostProperty /></Protected> } />
         <Route path='/postproperty' element={<Protected><PostProperty /></Protected> } />
         <Route path='/listings' element={<Protected><Properties /></Protected>} />
+        <Route path='/user-listing' element={<Protected><Setting/></Protected>} />
+        <Route path='/property-detail/:id' element={<Protected><PropertyDetail/></Protected>}/>
         <Route path='/auth-callback' element={<Auth0Callback />} />
         <Route path="*" element={<div>404 Not Found</div>} />
     </Routes>

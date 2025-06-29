@@ -12,6 +12,7 @@ function ProductFeature() {
     const token = await getAccessTokenSilently();
     const response = await postService.getListing(token);
      setData(response.data);
+     console.log(response.data)
     } catch (error) {
       console.log(error)
     }
