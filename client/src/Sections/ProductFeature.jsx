@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../Components/ProductCard";
 import postService from "../Services/PostService";
-import { useAuth0 } from "@auth0/auth0-react";
 
 function ProductFeature() {
   const [data , setData] = useState([]);
