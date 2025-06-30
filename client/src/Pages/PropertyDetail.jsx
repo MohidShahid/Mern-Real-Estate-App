@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import postService from "../Services/PostService";
-import { useAuth0 } from "@auth0/auth0-react";
 import { Locate, LandPlot , Bath , BedDouble } from "lucide-react";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,13 +8,11 @@ import Navbar from "../Sections/Navbar";
 import Footer from "../Sections/Footer";
 
 function PropertyDetail() {
-  const { getAccessTokenSilently } = useAuth0();
   const { id } = useParams();
   const [data, setData] = useState({});
   useEffect(() => {
     const fetchProperty = async () => {
-      const token = await getAccessTokenSilently();
-      const res = await postService.getProperty(id, token);
+      const res = await postService.getProperty(id);
       console.log(res.data);
       setData(res.data.property);
     };

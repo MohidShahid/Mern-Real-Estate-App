@@ -35,12 +35,13 @@ function Setting() {
   return (
     <>
       <Navbar />
-      <div className="flex flex-wrap flex-col items-start justify-center py-20 pl-20 gap-8 w-full">
+      <div className="flex flex-wrap flex-col items-start justify-center py-20 md:pl-5 pl-2.5 gap-8 w-full">
         <h1 className="text-3xl font-bold">Your Listings</h1>
         {
-          list.map((item)=> <div className="flex flex-wrap w-3/4 justify-between shadow-md p-4 rounded-2xl" key={item._id}>
-          <div className="flex gap-4 text-gray-500">
-          <img src={item.Images[0] || null} alt="" className="w-48" />
+          list.length > 0 ? (
+            list.map((item)=> <div className="flex flex-wrap md:w-11/12 w-full justify-between shadow-md p-4 rounded-2xl" key={item._id}>
+          <div className="flex gap-4 md:flex-row md:justify-around flex-col text-gray-500">
+          <img src={item.Images[0] || null} alt="" className="md:w-1/3 w-full" />
           <div className="flex flex-col gap-5">
             <h1 className="text-2xl text-black font-semibold">{item.title}</h1>
             <p>{item.description}</p>
@@ -56,14 +57,15 @@ function Setting() {
                 <LandPlot strokeWidth={1}/> {item.features.area}
               </span>
             </div>
-            <span className="text-xl text-green-700 font-semibold">{item.price ? `${(item.price).toLocaleString()} $` : 'Price on request'}</span>
-          </div>
+            <span className="text-xl text-shadow-gray-700 font-semibold py-2.5">{item.price ? `${(item.price).toLocaleString()} $` : 'Price on request'}</span>
           </div>
           <div className="flex flex-col gap-2">
-            <button className="btn btn-accent" onClick={()=> navigate(`/postProperty/${item._id}`)}>Edit</button>
-            <button className="btn btn-error" onClick={()=> handlerDelete(item._id)}>Delete</button>
+            <button className="btn btn-soft btn-accent" onClick={()=> navigate(`/postProperty/${item._id}`)}>Edit</button>
+            <button className="btn btn-soft btn-error" onClick={()=> handlerDelete(item._id)}>Delete</button>
+          </div>
           </div>
         </div>)
+          ) : (<><h1 className="text-3xl">Didn't found anything</h1></>)
         }
         
       </div>

@@ -1,9 +1,9 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useState, useRef, useEffect } from "react";
 import { Autoplay, EffectFade } from "swiper/modules";
-import Image1 from "../assets/Images/dillon.jpg";
-import Image2 from "../assets/Images/brian.jpg";
-import Image3 from "../assets/Images/tierra.jpg";
+import Image1 from "../assets/Images/House (3).jpg";
+import Image2 from "../assets/Images/House (7).jpg";
+import Image3 from "../assets/Images/House (10).jpg";
 import Input from "../Components/Input";
 import Button from "../Components/Button";
 import { Search, ChevronDown } from "lucide-react";

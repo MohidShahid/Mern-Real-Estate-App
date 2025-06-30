@@ -22,11 +22,7 @@ class PostService {
 
     async getListing(token){
         try {
-          const response = await axios.get(`${this.url}/`,{
-                headers : {
-                    Authorization : `Bearer ${token}`
-                }
-            })
+          const response = await axios.get(`${this.url}/`)
             return response
         } catch (error) {
             console.error("Get Listing Error" , error.response?.data || error.message)
@@ -63,11 +59,7 @@ class PostService {
 
     async getProperty (id , token){
         try {
-          const res =  await axios.get(`${this.url}/getProperty/${id}` ,{
-            headers : {
-                Authorization : `Bearer ${token}`
-            }
-          })
+          const res =  await axios.get(`${this.url}/getProperty/${id}`)
           return res;
         } catch (error) {
             console.error("Get Property Error" , error.response?.data || error.message)

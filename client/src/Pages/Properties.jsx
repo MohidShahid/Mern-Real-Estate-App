@@ -1,18 +1,15 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../Components/ProductCard";
 import postService from "../Services/PostService";
-import { useAuth0 } from "@auth0/auth0-react";
 import Navbar from "../Sections/Navbar";
 import Footer from "../Sections/Footer";
 
 function ProductFeature() {
-  const {getAccessTokenSilently , user} = useAuth0();
   const [data , setData] = useState([]);
   useEffect(() => {
     const fetchData = async()=>{
        try {
-    const token = await getAccessTokenSilently();
-    const response = await postService.getListing(token);
+    const response = await postService.getListing();
      setData(response.data);
     } catch (error) {
       console.log(error)

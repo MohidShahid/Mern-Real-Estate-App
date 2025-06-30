@@ -21,9 +21,9 @@ function AppRoutes() {
         <Route path='/signup' element={<Signup />} />
         <Route path='/postproperty/:id' element={<Protected><PostProperty /></Protected> } />
         <Route path='/postproperty' element={<Protected><PostProperty /></Protected> } />
-        <Route path='/listings' element={<Protected><Properties /></Protected>} />
+        <Route path='/listings' element={<Properties />} />
         <Route path='/user-listing' element={<Protected><Setting/></Protected>} />
-        <Route path='/property-detail/:id' element={<Protected><PropertyDetail/></Protected>}/>
+        <Route path='/property-detail/:id' element={<PropertyDetail/>}/>
         <Route path='/auth-callback' element={<Auth0Callback />} />
         <Route path="*" element={<div>404 Not Found</div>} />
     </Routes>

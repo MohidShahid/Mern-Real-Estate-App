@@ -6,8 +6,8 @@ const {createProperty , showProperty , userListing , updateProperty, deletePrope
 router.post('/createProperty' , jwtCheck , upload.array("images" , 5) ,createProperty);
 router.put('/updateProperty/:id' , jwtCheck, updateProperty);
 router.delete('/deleteProperty' , jwtCheck, deleteProperty);
-router.get('/', jwtCheck , showProperty);
-router.get('/getProperty/:id' , jwtCheck, getProperty);
+router.get('/',  showProperty);
+router.get('/getProperty/:id', getProperty);
 router.get('/userLists' , jwtCheck , userListing);
 
 module.exports = router;

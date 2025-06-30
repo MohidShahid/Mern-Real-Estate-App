@@ -51,6 +51,7 @@ function Profile() {
         <Input 
         type={"submit"}
         value={"Update"}
+        className={'w-full'}
         />
         </div>
         <p>{message}</p>
