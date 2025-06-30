@@ -109,7 +109,7 @@ function HeroSection() {
                 <Input
                   type={"text"}
                   placeholder={"Category"}
-                  className="w-full h-10 px-3 py-6 rounded-md border text-[#000] font-bold border-gray-300"
+                  className="w-full h-10 px-3 py-6 rounded-md border text-gray-700 border-gray-300"
                   ref={InputCategory}
                 />
                 <ChevronDown className="absolute z-3 right-3 top-3 text-gray-500" />
@@ -137,7 +137,7 @@ function HeroSection() {
                 <Input
                   type={"text"}
                   placeholder={"Location"}
-                  className="w-full h-10 px-3 py-6 rounded-md border text-[#000] font-bold border-gray-300"
+                  className="w-full h-10 px-3 py-6 rounded-md border text-gray-700  border-gray-300"
                   ref={InputLocation}
                 />
                 <ChevronDown className="absolute z-3 right-3 top-3 text-gray-500" />

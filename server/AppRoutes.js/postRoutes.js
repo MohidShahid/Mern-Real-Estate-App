@@ -1,9 +1,13 @@
 const router = require('express').Router();
 const jwtCheck = require('../middleware/AuthCheck')
 const upload = require('../middleware/multer')
-const {createProperty , showProperty} = require('../controllers/PostController');
+const {createProperty , showProperty , userListing , updateProperty, deleteProperty , getProperty} = require('../controllers/PostController');
 
 router.post('/createProperty' , jwtCheck , upload.array("images" , 5) ,createProperty);
+router.put('/updateProperty/:id' , jwtCheck, updateProperty);
+router.delete('/deleteProperty' , jwtCheck, deleteProperty);
 router.get('/', jwtCheck , showProperty);
+router.get('/getProperty/:id' , jwtCheck, getProperty);
+router.get('/userLists' , jwtCheck , userListing);
 
 module.exports = router;

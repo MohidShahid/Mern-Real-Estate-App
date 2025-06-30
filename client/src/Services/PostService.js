@@ -63,7 +63,7 @@ class PostService {
 
     async getProperty (id , token){
         try {
-          const res =  await axios.get(`${this.url}/${id}` ,{
+          const res =  await axios.get(`${this.url}/getProperty/${id}` ,{
             headers : {
                 Authorization : `Bearer ${token}`
             }
@@ -73,6 +73,24 @@ class PostService {
             console.error("Get Property Error" , error.response?.data || error.message)
         }
     }
+
+   async updateProperty(id, data, token) {
+  try {
+    const res = await axios.put(
+      `${this.url}/updateProperty/${id}`,
+      data, // this is the actual update data
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
+        }
+      }
+    );
+    return res.data;
+  } catch (error) {
+    console.error("Update Property Error", error.response?.data || error.message);
+  }
+}
 }
 
 const postService = new PostService();

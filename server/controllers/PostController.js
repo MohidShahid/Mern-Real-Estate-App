@@ -40,7 +40,7 @@ const createProperty = async (req, res) => {
 const showProperty = async (req, res) => {
         try {
             const listings = await Property.find({});
-            res.status(201).json(listings)
+            res.status(201).json(listings);
         } catch (error) {
             console.error("Listing Error:", error.message);
             res.status(500).send("Server Error");
@@ -48,4 +48,54 @@ const showProperty = async (req, res) => {
 
     }
 
-module.exports = { createProperty , showProperty }
+const userListing = async(req , res)=>{
+    try {
+   const {sub} = req.auth;
+   const user = await User.findOne({auth0Id : sub});
+   const lists = await Property.find({userId : user._id});
+   res.status(201).json(lists);
+    } catch (error) {
+        console.error("User List Error:", error.message)
+        res.status(500).send("Server Error");
+    }
+}
+
+const deleteProperty = async(req , res)=>{
+    try {
+   const {id} = req.body;
+   await Property.deleteOne({_id : id});
+   res.status(201).send("deleted successfully")
+    } catch (error) {
+        console.error("Delete Property Error:", error.message)
+        res.status(500).send("Server Error");
+    }
+}   
+
+const updateProperty = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const updateData = req.body;
+
+    const updated = await Property.findByIdAndUpdate(id, { $set: updateData }, { new: true, runValidators: true });
+
+    if (!updated) return res.status(404).json({ message: "Property not found" });
+
+    res.status(200).json({ message: "Property updated successfully", property: updated });
+  } catch (error) {
+    console.error("Update Property Error:", error.message);
+    res.status(500).json({ message: "Server Error" });
+  }
+};
+
+
+  const getProperty = async(req , res)=>{
+    try {
+       const property = await Property.findById({_id : req.params.id});
+       if(property) res.status(201).json({property})
+    } catch (error) {
+        console.error("Get Property Error" , error.message);
+        res.status(500).send("Server Error");
+    }
+  }
+
+module.exports = { createProperty , showProperty, userListing , updateProperty , deleteProperty , getProperty}
