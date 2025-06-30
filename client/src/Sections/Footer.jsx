@@ -1,5 +1,4 @@
 import House from "../assets/Images/business-and-trade.png";
-import Button from "../Components/Button";
 function Footer() {
   return (
     <>
@@ -7,9 +6,9 @@ function Footer() {
   <aside>
     <img src={House} alt="logo" className="w-12" />
     <p>
-      ACME Industries Ltd.
+      Basera Online
       <br />
-      Providing reliable tech since 1992
+      Where Property Meets Simplicity
     </p>
   </aside>
   <nav>

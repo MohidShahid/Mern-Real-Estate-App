@@ -28,7 +28,7 @@ function ProductCard({ data }) {
 
 
   return (
-    <Link to={`/property-detail/${_id}`} className="flex flex-col items-start justify-center w-96 h-auto border rounded-lg shadow-md overflow-hidden">
+    <Link to={`/property-detail/${_id}`} className="flex flex-col items-start justify-center md:w-96 w-[100%] h-auto border rounded-lg shadow-md overflow-hidden">
       <div className="w-full relative">
         <Swiper
           modules={[Pagination]}

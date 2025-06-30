@@ -1,4 +1,3 @@
-import House from "../assets/Images/business-and-trade.png";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 
@@ -7,7 +6,7 @@ function Navbar() {
 
   return (
     <div className="navbar bg-base-100 shadow-sm z-10">
-      <div className="navbar-start">
+      <div className="navbar-start items-center">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
@@ -55,8 +54,8 @@ function Navbar() {
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl flex items-baseline justify-center">
-          <img src={House} alt="" className="w-7" />
+        <a className="btn btn-ghost text-xl">
+          {/* <img src={House} alt="" className="w-7" /> */}
           Basera
         </a>
       </div>

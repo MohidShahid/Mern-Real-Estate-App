@@ -37,7 +37,7 @@ function HeroSection() {
   }, []);
 
   return (
-    <div style={{ width: "100%", height: "600px" }} className={`slider-box px-5`}>
+    <div className={`w-full h-[600px] md:px-5`}>
       <Swiper
         modules={[Autoplay, EffectFade]}
         spaceBetween={10}
@@ -71,8 +71,8 @@ function HeroSection() {
             className="w-full h-full object-cover"
           />
         </SwiperSlide>
-        <div className="slide-caption flex flex-col gap-3.5 absolute left-0 top-1/5 z-2 w-full bg-opacity-50 text-white text-4xl p-4">
-          <h1 className="md:text-6xl/normal text-5xl/snug font-bold">
+        <div className="slide-caption flex flex-col gap-3.5 absolute left-0 top-1/5 z-2 w-full bg-opacity-50 text-white p-4">
+          <h1 className="md:text-6xl/normal text-4xl/snug font-bold">
             Buy or Rent Properties <br />
             with no commission
           </h1>
