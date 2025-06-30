@@ -25,7 +25,7 @@ function ProductFeature() {
       <h1 className="text-4xl px-2.5">
        Our Listings
       </h1>
-      <div className="flex flex-wrap px-5 items-center justify-around gap-32">
+      <div className="flex flex-wrap md:px-5 items-center justify-around md:gap-32 gap-2.5 w-full h-auto">
        {data.map((item) => <ProductCard data={item} key={item._id} />)}
 
       </div>
