@@ -4,7 +4,7 @@ import axios from 'axios'
 class AuthService {
     url 
     constructor(){
-       this.url = "http://localhost:3000/api/user";
+       this.url = "https://mern-real-estate-app-production.up.railway.app/api/user";
     }
 
 async SignupUser(token , user) {

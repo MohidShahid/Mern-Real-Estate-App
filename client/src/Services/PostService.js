@@ -2,7 +2,7 @@ import axios from 'axios'
 
 class PostService {
     constructor() {
-        this.url = "http://localhost:3000/api/post"; // Make sure this is correctly set
+        this.url = "https://mern-real-estate-app-production.up.railway.app/api/post"; // Make sure this is correctly set
     }
 
     async AddListing(data, token) { // 'data' here will be the FormData object
