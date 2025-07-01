@@ -44,7 +44,7 @@ function PropertyDetail() {
               pagination={{
                 clickable: true,
               }}
-              className="rounded w-full md:h-[60vh]"
+              className="rounded w-[91vw]"
             >
               {Images.length > 0 ? ( // Check if Images array has content
                 Images.map((imagelink, i) => (
@@ -52,7 +52,7 @@ function PropertyDetail() {
                     <img
                       src={imagelink}
                       alt={`Property image ${i + 1}`}
-                      className="w-full h-auto object-cover" // Added object-cover for better image fitting
+                      className="w-full h-72 object-cover" // Added object-cover for better image fitting
                     />
                   </SwiperSlide>
                 ))
