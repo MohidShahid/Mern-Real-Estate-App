@@ -15,7 +15,7 @@ function PostProperty() {
     setValue,
     watch,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm();
 
   const images = watch("images");
@@ -58,55 +58,56 @@ function PostProperty() {
     try {
       const token = await getAccessTokenSilently();
 
-      const payload = {
-        title: data.title,
-        description: data.description,
-        category: data.category,
-        PhoneNo: data.PhoneNo,
-        location: {
-          address: data.address,
-          postalCode: data.postalCode,
-          city: data.city,
-          country: data.country
-        },
-        features: {
-          bedroom: data.bedroom,
-          bathroom: data.bathroom,
-          area: data.area
-        },
-        price: data.price
-      };
-
-      let response;
-
       if (id) {
-        // Update mode
-        response = await postService.updateProperty(id, payload, token);
+        // Update mode - plain JSON
+        const payload = {
+          title: data.title,
+          description: data.description,
+          category: data.category,
+          PhoneNo: data.PhoneNo,
+          location: {
+            address: data.address,
+            postalCode: data.postalCode,
+            city: data.city,
+            country: data.country,
+          },
+          features: {
+            bedroom: data.bedroom,
+            bathroom: data.bathroom,
+            area: data.area,
+          },
+          price: data.price,
+        };
+
+        const response = await postService.updateProperty(id, payload, token);
+        console.log(response)
         setMessage("Property updated successfully!");
       } else {
-        // Add mode
+        // Post mode - use FormData
         const formData = new FormData();
-        for (const key in payload) {
-          if (typeof payload[key] === "object") {
-            for (const subKey in payload[key]) {
-              formData.append(`${key}.${subKey}`, payload[key][subKey]);
-            }
-          } else {
-            formData.append(key, payload[key]);
-          }
-        }
+        formData.append("title", data.title);
+        formData.append("description", data.description);
+        formData.append("category", data.category);
+        formData.append("PhoneNo", data.PhoneNo);
+        formData.append("address", data.address);
+        formData.append("postalCode", data.postalCode);
+        formData.append("city", data.city);
+        formData.append("country", data.country);
+        formData.append("bedroom", data.bedroom);
+        formData.append("bathroom", data.bathroom);
+        formData.append("area", data.area);
+        formData.append("price", data.price);
 
         if (images?.length) {
           Array.from(images).forEach((img) => {
             formData.append("images", img);
           });
         }
-
-        response = await postService.AddListing(formData, token);
+        console.log(formData)
+        const response = await postService.AddListing(formData, token);
+        console.log(response);
         setMessage("Property posted successfully!");
       }
-
-      console.log(response);
     } catch (error) {
       console.error(error);
       setMessage("Something went wrong.");
@@ -128,18 +129,20 @@ function PostProperty() {
           {/* Left Section */}
           <div className="flex flex-col w-full lg:w-1/2 gap-4">
             <Input
-              type={"text"}
-              placeholder={"Enter the title"}
+              type="text"
+              placeholder="Enter the title"
               {...register("title", { required: "Title is required" })}
-              className={"w-full"}
+              className="w-full"
             />
-            {errors.title && <p className="text-red-500">{errors.title.message}</p>}
+            {errors.title && (
+              <p className="text-red-500">{errors.title.message}</p>
+            )}
 
             <textarea
               placeholder="Enter the description"
               {...register("description", {
                 required: "Description is required",
-                maxLength: { value: 400, message: "Too long" }
+                maxLength: { value: 400, message: "Too long" },
               })}
               className="w-full h-40 textarea border p-2 rounded"
             />
@@ -178,26 +181,28 @@ function PostProperty() {
             </div>
 
             <Input
-              type={"text"}
-              placeholder={"Phone Number"}
+              type="text"
+              placeholder="Phone Number"
               {...register("PhoneNo", { required: "Phone number is required" })}
-              className={"w-full"}
+              className="w-full"
             />
             {errors.PhoneNo && (
               <p className="text-red-500">{errors.PhoneNo.message}</p>
             )}
 
             <Input
-              type={"text"}
-              placeholder={"Address"}
+              type="text"
+              placeholder="Address"
               {...register("address", { required: "Address is required" })}
-              className={"w-full"}
+              className="w-full"
             />
             <Input
-              type={"number"}
-              placeholder={"Postal Code"}
-              {...register("postalCode", { required: "Postal Code is required" })}
-              className={"w-full"}
+              type="number"
+              placeholder="Postal Code"
+              {...register("postalCode", {
+                required: "Postal Code is required",
+              })}
+              className="w-full"
             />
           </div>
 
@@ -206,42 +211,42 @@ function PostProperty() {
             <h2 className="text-2xl font-bold">Features</h2>
 
             <Input
-              type={"text"}
-              placeholder={"City"}
+              type="text"
+              placeholder="City"
               {...register("city", { required: "City is required" })}
               className="w-full"
             />
             <Input
-              type={"text"}
-              placeholder={"Country"}
+              type="text"
+              placeholder="Country"
               {...register("country", { required: "Country is required" })}
               className="w-full"
             />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Input
-                type={"number"}
-                placeholder={"Bedroom"}
+                type="number"
+                placeholder="Bedroom"
                 {...register("bedroom", { required: "Required" })}
                 className="w-full"
               />
               <Input
-                type={"number"}
-                placeholder={"Bathroom"}
+                type="number"
+                placeholder="Bathroom"
                 {...register("bathroom", { required: "Required" })}
                 className="w-full"
               />
             </div>
 
             <Input
-              type={"number"}
-              placeholder={"Area (sqft)"}
+              type="number"
+              placeholder="Area (sqft)"
               {...register("area", { required: "Area is required" })}
               className="w-full"
             />
             <Input
-              type={"number"}
-              placeholder={"Price"}
+              type="number"
+              placeholder="Price"
               {...register("price", { required: "Price is required" })}
               className="w-full"
             />
@@ -252,12 +257,20 @@ function PostProperty() {
                 accept="image/*"
                 multiple
                 className="file-input file-input-bordered w-full"
-                {...register("images", { required: "At least one image is required" })}
+                {...register("images", {
+                  required: "At least one image is required",
+                })}
               />
             )}
-            {errors.images && <p className="text-red-500">{errors.images.message}</p>}
+            {errors.images && (
+              <p className="text-red-500">{errors.images.message}</p>
+            )}
 
-            <Input type="submit" value={id ? "Update" : "Post"} className="bg-yellow-400 text-black w-full" />
+            <Input
+              type="submit"
+              value={id ? "Update" : "Post"}
+              className="bg-yellow-400 text-black w-full"
+            />
             {message && <p className="text-green-600">{message}</p>}
           </div>
         </form>

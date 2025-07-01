@@ -28,7 +28,7 @@ function ProductCard({ data }) {
 
 
   return (
-    <Link to={`/property-detail/${_id}`} className="flex flex-col items-start justify-center md:w-96 w-[100%] h-auto border rounded-lg shadow-md overflow-hidden">
+    <Link to={`/property-detail/${_id}`} className="flex flex-col items-start justify-center md:!w-96 !w-[99%] h-auto border rounded-lg shadow-md overflow-hidden">
       <div className="w-full relative">
         <Swiper
           modules={[Pagination]}
@@ -58,7 +58,7 @@ function ProductCard({ data }) {
             </SwiperSlide>
           )}
         </Swiper>
-        <span className="absolute top-[7%] left-3 z-10 text-xs font-bold py-1 px-2.5 bg-[#E6F1EF] rounded">
+        <span className="absolute top-[7%] left-[-3px] z-3 text-gray-500 text-md font-bold py-1.5 px-6 bg-[#E6F1EF] rounded">
           {category}
         </span>
       </div>
@@ -73,7 +73,7 @@ function ProductCard({ data }) {
           {description}
         </p>
         <div className="border-t border-[#dcd5d5] flex justify-between pt-5 items-center"> {/* Added items-center for vertical alignment */}
-          <h3 className="text-xl font-semibold text-green-700">
+          <h3 className="text-xl font-semibold text-[#FB8053]">
             {price ? `${price.toLocaleString()} $` : 'Price on request'} {/* Formatted price and fallback */}
           </h3>
           <div className="flex gap-4 text-gray-600">

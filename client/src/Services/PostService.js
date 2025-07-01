@@ -10,7 +10,6 @@ class PostService {
             const response = await axios.post(`${this.url}/createProperty`, data, {
                 headers: {
                     Authorization: `Bearer ${token}`,
-                    // No need to set 'Content-Type': 'multipart/form-data'. Axios handles it for FormData.
                 }
             });
             return response;

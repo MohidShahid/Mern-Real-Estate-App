@@ -5,6 +5,8 @@ const createProperty = async (req, res) => {
     try {
         const p = req.body;
          const imageUrls = req.files?.map(file => `${file.path}`) || [];
+         console.log(p , imageUrls , req.files);
+         console.log(req)
         const user = await User.findOne({ auth0Id: req.auth?.sub });
         if (!user) return res.status(401).json({ message: "User not found" });
         const newProperty = new Property({

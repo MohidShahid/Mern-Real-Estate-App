@@ -73,7 +73,7 @@ function PropertyDetail() {
               <div className="badge badge-warning">{category}</div>
             </h1>
             <p className="text-gray-500">{description}</p>
-            <span className="flex gap-2.5 py-1.5 pl-3.5 mt-3 bg-gray-200 rounded-4xl text-gray-400">
+            <span className="flex gap-2.5 py-1.5 pl-3.5 mt-3 bg-[#d4d4d480] rounded-4xl text-gray-400">
               <Locate strokeWidth={1}/> {location?.address || ""}{" "}
               {" " +
                 location?.city +
