@@ -47,7 +47,7 @@ function HeroSection() {
           disableOnInteraction: false,
         }}
         effect="fade"
-        className="rounded-md relative w-full md:h-full"
+        className="rounded-md relative w-full md:h-full h-auto"
       >
         <SwiperSlide>
           <img src={Image1} alt="Slide 1" className="w-full object-cover" />
@@ -59,7 +59,7 @@ function HeroSection() {
           <img src={Image3} alt="Slide 3" className="w-full object-cover" />
         </SwiperSlide>
         <div className="slide-caption flex flex-col gap-3.5 absolute left-0 top-1/5 z-2 w-full bg-opacity-50 text-white p-4">
-          <h1 className="md:text-6xl/normal text-4xl/snug font-bold">
+          <h1 className="md:text-6xl/normal text-3xl/snug font-bold capitalize">
             Buy or Rent Properties <br />
             with no commission
           </h1>

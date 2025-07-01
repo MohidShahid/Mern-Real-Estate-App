@@ -41,7 +41,7 @@ function ProductCard({ data }) {
             Images.map((imagelink, i) => (
               <SwiperSlide key={i}>
                 <img
-                  src={imagelink}
+                  src={imagelink.replace("/upload/", "/upload/q_auto,f_auto,f_webp/")}
                   alt={`Property image ${i + 1}`}
                   className="w-full h-48 object-cover" // Added object-cover for better image fitting
                 />

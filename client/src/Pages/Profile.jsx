@@ -32,7 +32,7 @@ function Profile() {
         <div className="flex flex-col gap-5 ">
           <Input 
         type={"file"}
-        className={`file-input`}
+        className={`file-input w-full`}
         {...register("image")}
         />
         {user?.given_name &&
