@@ -10,6 +10,7 @@ class PostService {
             const response = await axios.post(`${this.url}/createProperty`, data, {
                 headers: {
                     Authorization: `Bearer ${token}`,
+
                 }
             });
             return response;

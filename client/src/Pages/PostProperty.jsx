@@ -80,7 +80,7 @@ function PostProperty() {
         };
 
         const response = await postService.updateProperty(id, payload, token);
-        console.log(response)
+        console.log(response);
         setMessage("Property updated successfully!");
       } else {
         // Post mode - use FormData
@@ -99,11 +99,12 @@ function PostProperty() {
         formData.append("price", data.price);
 
         if (images?.length) {
-          Array.from(images).forEach((img) => {
-            formData.append("images", img);
-          });
+          for (let i = 0; i < images.length; i++) {
+            formData.append("images", images[i]);
+          }
         }
-        console.log(formData)
+
+        console.log(formData);
         const response = await postService.AddListing(formData, token);
         console.log(response);
         setMessage("Property posted successfully!");
