@@ -65,7 +65,7 @@ function Setting() {
           </div>
           </div>
         </div>)
-          ) : (<><h1 className="text-3xl">Didn't found anything</h1></>)
+          ) : (<><h1 className="md:text-3xl text-lg pt-2.5">Didn't found anything</h1></>)
         }
         
       </div>

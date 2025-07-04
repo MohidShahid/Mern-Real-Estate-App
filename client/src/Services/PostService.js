@@ -83,6 +83,15 @@ class PostService {
     console.error("Update Property Error", error.response?.data || error.message);
   }
 }
+
+async filterByCategoryAndLocation(filter){
+  try {
+   const res = await axios.get(`${this.url}/filterCategoryAndLocation`,filter);
+   return res;
+  } catch (error) {
+    console.error("Filter Category and Location Error", error.response?.data || error.message);
+  }
+}
 }
 
 const postService = new PostService();

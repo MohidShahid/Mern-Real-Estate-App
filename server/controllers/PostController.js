@@ -100,4 +100,18 @@ const updateProperty = async (req, res) => {
     }
   }
 
-module.exports = { createProperty , showProperty, userListing , updateProperty , deleteProperty , getProperty}
+  const filterByCategoryandLocation = async(req , res) =>{
+    try {
+     const {category , location} = req.body;
+     const filter = {};
+     if(category && category.trim() != '') filter.category = category;
+     if(location && location.trim() != '') filter["location.city"] = location;
+     const filterResponse = await Property.find(filter);
+     res.status(201).json({filterResponse})
+    } catch (error) {
+        console.error("Get Property Error" , error.message);
+        res.status(500).send("Server Error");
+    }
+  }
+
+module.exports = { createProperty , showProperty, userListing , updateProperty , deleteProperty , getProperty , filterByCategoryandLocation}

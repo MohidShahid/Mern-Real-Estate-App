@@ -1,6 +1,6 @@
-function Button({text , className , OnClick , props }) {
+function Button({text , className , onClick , props }) {
   return (
-    <button className={`btn ${className}`} onClick={OnClick} {...props}>{text}</button>
+    <button className={`btn ${className}`} onClick={onClick} {...props}>{text}</button>
   )
 }
 

@@ -31,14 +31,14 @@ function PropertyDetail() {
   } = data;
   console.log(data.location?.address);
   if (!data || !data.location) {
-    return <span className="loading loading-ring loading-xl"></span>;
+    return <Loading />;
   } else {
     return (
       <>
         <Navbar />
-        <div className="flex flex-col w-full items-center justify-center gap-7 py-14">
-            <div className="flex flex-col md:items-start md:justify-start items-center justify-center">
-          <div className="flex md:flex-row flex-col items-start justify-center md:w-[83%] w-11/12 gap-8">
+        <div className="flex flex-col w-full items-center justify-center gap-7 pt-2.5 pb-14 px-3.5">
+            <div className="flex flex-col items-start justify-start">
+          <div className="flex flex-col items-start justify-center w-[83%] gap-8 ">
             <Swiper
               modules={[Pagination]}
               pagination={{
@@ -52,7 +52,7 @@ function PropertyDetail() {
                     <img
                       src={imagelink}
                       alt={`Property image ${i + 1}`}
-                      className="w-full h-72 object-cover" // Added object-cover for better image fitting
+                      className="w-full h-72 md:h-[70vh] object-cover" // Added object-cover for better image fitting
                     />
                   </SwiperSlide>
                 ))

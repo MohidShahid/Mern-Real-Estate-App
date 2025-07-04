@@ -119,7 +119,7 @@ function Navbar() {
               </Link>
             </li>
             <li>
-              <Link to={"/user-listing"}>Settings</Link>
+              <Link to={"/user-listing"}>Your Listing</Link>
             </li>
             <li>
               <Link onClick={() => logout()}>Logout</Link>

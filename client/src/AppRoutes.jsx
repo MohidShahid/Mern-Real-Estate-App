@@ -9,6 +9,7 @@ import Properties from './Pages/Properties'
 import Protected from './Pages/Protected'
 import Setting from './Pages/Setting'
 import PropertyDetail from './Pages/PropertyDetail'
+import Archive from './Pages/Archive'
 
 function AppRoutes() {
   return (
@@ -24,6 +25,7 @@ function AppRoutes() {
         <Route path='/listings' element={<Properties />} />
         <Route path='/user-listing' element={<Protected><Setting/></Protected>} />
         <Route path='/property-detail/:id' element={<PropertyDetail/>}/>
+        <Route path='/archive' element={<Archive />} />
         <Route path='/auth-callback' element={<Auth0Callback />} />
         <Route path="*" element={<div>404 Not Found</div>} />
     </Routes>
