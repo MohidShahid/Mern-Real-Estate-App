@@ -9,6 +9,6 @@ router.delete('/deleteProperty' , jwtCheck, deleteProperty);
 router.get('/',  showProperty);
 router.get('/getProperty/:id', getProperty);
 router.get('/userLists' , jwtCheck , userListing);
-router.get('/filterCategoryAndLocation' , filterByCategoryandLocation)
+router.post('/filterCategoryAndLocation' , filterByCategoryandLocation)
 
 module.exports = router;

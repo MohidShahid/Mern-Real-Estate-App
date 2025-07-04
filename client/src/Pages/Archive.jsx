@@ -13,6 +13,7 @@ function Archive() {
   useEffect(()=>{
     const filterResult = async()=>{
      const res = await postService.filterByCategoryAndLocation({category , location})
+     console.log(res)
      setResult(res);
     }
    filterResult();

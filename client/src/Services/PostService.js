@@ -87,7 +87,7 @@ class PostService {
 async filterByCategoryAndLocation(data){
   try {
     console.log(data)
-   const res = await axios.get(`${this.url}/filterCategoryAndLocation`,data);
+   const res = await axios.post(`${this.url}/filterCategoryAndLocation`, data);
    return res;
   } catch (error) {
     console.error("Filter Category and Location Error", error.response?.data || error.message);
