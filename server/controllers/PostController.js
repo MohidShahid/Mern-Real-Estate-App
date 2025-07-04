@@ -103,6 +103,7 @@ const updateProperty = async (req, res) => {
   const filterByCategoryandLocation = async(req , res) =>{
     try {
      const {category , location} = req.body;
+     console.log(req.body);
      const filter = {};
      if(category && category.trim() != '') filter.category = category;
      if(location && location.trim() != '') filter["location.city"] = location;

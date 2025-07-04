@@ -23,7 +23,7 @@ function Archive() {
     <Navbar />
     <div className="flex flex-col items-start justify-start w-full px-5 py-40 gap-14">
       <h1 className="text-4xl px-2.5">
-      {result.length} Result Found
+      {result?.length} Result Found
       </h1>
       <div className="flex flex-wrap md:px-5 items-center justify-around gap-32 w-full h-auto">
        {result.map((item) => <ProductCard data={item} key={item._id} />)}
