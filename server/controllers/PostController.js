@@ -68,18 +68,19 @@ const deleteProperty = async (req, res) => {
     const { id } = req.body;
     const property = await Property.findById(id);
 
-    if (!property || !property.Images || !Array.isArray(property.Images)) {
+    if (!property || !Array.isArray(property.Images)) {
       return res.status(404).send("Property or images not found");
     }
 
-    // ✅ Correct way to extract public IDs
     const publicIds = property.Images.map((url) => {
-      // Remove version and domain, extract only folder/filename
-      const withoutPrefix = url.split("/upload/")[1];
-      return withoutPrefix.split(".")[0]; // remove extension like .jpg
+      const afterUpload = url.split("/upload/")[1]; // v123/basera_uploads/filename.jpg
+      const pathParts = afterUpload.split("/");
+      pathParts.shift(); // remove version
+      const filePath = pathParts.join("/"); // basera_uploads/filename.jpg
+      return filePath.split(".")[0]; // basera_uploads/filename
     });
 
-    console.log("Extracted Public IDs:", publicIds);
+    console.log("Final Clean Public IDs:", publicIds);
 
     const imgRes = await cloudinary.api.delete_resources(publicIds);
     console.log("Cloudinary Response:", imgRes);
@@ -91,6 +92,7 @@ const deleteProperty = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
+
 
 
 const updateProperty = async (req, res) => {
