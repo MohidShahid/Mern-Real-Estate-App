@@ -3,7 +3,7 @@ import Footer from '../Sections/Footer'
 import postService from '../Services/PostService';
 import { useSearchParams } from 'react-router-dom'
 import { useEffect, useState } from 'react';
-// import ProductCard from '../Components/ProductCard'
+import ProductCard from '../Components/ProductCard'
 function Archive() {
   const [searchParams , setSearchParams] = useSearchParams();
   const [result , setResult] = useState([]);
@@ -14,7 +14,7 @@ function Archive() {
     const filterResult = async()=>{
      const res = await postService.filterByCategoryAndLocation({category , location})
      console.log(res)
-     setResult(res);
+     setResult(res.data.filterResponse);
     }
    filterResult();
   },[category , location])

@@ -84,7 +84,7 @@ function Navbar() {
             <Link to={"/listings"}>Listings</Link>
           </li>
           <li>
-            <Link to={"/postproperty"}>Post Property</Link>
+            <Link to={"/postproperty"}>Add Property</Link>
           </li>
         </ul>
       </div>

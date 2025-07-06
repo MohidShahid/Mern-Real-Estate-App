@@ -39,9 +39,9 @@ function Setting() {
         <h1 className="text-3xl font-bold">Your Listings</h1>
         {
           list.length > 0 ? (
-            list.map((item)=> <div className="flex flex-wrap md:w-11/12 w-full justify-between shadow-md p-4 rounded-2xl" key={item._id}>
+            list.map((item)=> <div className="flex flex-wrap md:w-11/12 w-full justify-between list-product p-4 rounded-2xl" key={item._id}>
           <div className="flex gap-4 md:flex-row md:justify-around flex-col text-gray-500">
-          <img src={item.Images[0] || null} alt="" className="md:w-1/3 w-full" />
+          <img src={item.Images[0] || null} alt="" className="md:w-1/3 rounded-xl w-full" />
           <div className="flex flex-col gap-5">
             <h1 className="text-2xl text-black font-semibold">{item.title}</h1>
             <p>{item.description}</p>

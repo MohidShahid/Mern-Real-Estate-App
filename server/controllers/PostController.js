@@ -1,5 +1,6 @@
 const Property = require('../models/properties');
-const User = require('../models/user')
+const User = require('../models/user');
+const cloudinary = require('../utils/cloudinary')
 
 const createProperty = async (req, res) => {
     try {
@@ -65,6 +66,9 @@ const userListing = async(req , res)=>{
 const deleteProperty = async(req , res)=>{
     try {
    const {id} = req.body;
+   const property = await Property.findById(id);
+   const imgRes = await cloudinary.api.delete_resources(property.Images);
+   console.log(imgRes);
    await Property.deleteOne({_id : id});
    res.status(201).send("deleted successfully")
     } catch (error) {

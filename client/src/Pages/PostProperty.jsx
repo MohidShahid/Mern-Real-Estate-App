@@ -120,7 +120,7 @@ function PostProperty() {
       <Navbar />
       <div className="w-full px-4 lg:px-20 py-10">
         <h1 className="text-3xl lg:text-5xl font-bold mb-10 text-center lg:text-left">
-          {id ? "Update Property" : "Post a Property"}
+          {id ? "Update Property" : "Add Property"}
         </h1>
 
         <form

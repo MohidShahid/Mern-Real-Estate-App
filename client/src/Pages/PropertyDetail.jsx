@@ -6,6 +6,7 @@ import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Navbar from "../Sections/Navbar";
 import Footer from "../Sections/Footer";
+import Loading from '../Components/Loading'
 
 function PropertyDetail() {
   const { id } = useParams();

@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ProductCard from "../Components/ProductCard";
 import postService from "../Services/PostService";
+import Button from '../Components/Button'
 
 function ProductFeature() {
+  const navigate = useNavigate();
   const [data , setData] = useState([]);
   useEffect(() => {
     const fetchData = async()=>{
@@ -24,8 +27,15 @@ function ProductFeature() {
         <span className="font-bold">real estate</span>
       </h1>
       <div className="flex flex-wrap md:px-5  items-center justify-around gap-32 w-full">
-       {data.map((item) => <ProductCard data={item} key={item._id} />)}
+       {data.map((item,i) => i < 6 ? (<ProductCard data={item} key={item._id} />) : (""))}
 
+      </div>
+      <div className="flex items-center justify-center w-full py-4">
+      <Button 
+      text={"Browse More Properties"}
+      className={"bg-[#FB8053] py-7 text-white"}
+      onClick={()=> navigate('/listings')}
+      />
       </div>
     </div>
   );
