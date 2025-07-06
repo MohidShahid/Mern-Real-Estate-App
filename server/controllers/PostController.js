@@ -63,24 +63,35 @@ const userListing = async(req , res)=>{
     }
 }
 
-const deleteProperty = async(req , res)=>{
-    try {
-   const {id} = req.body;
-   const property = await Property.findById(id);
-   const publicIds = property.Images.map((url) => {
-            // Example: extract after 'upload/' and remove file extension
-            const parts = url.split("/upload/")[1];
-            return parts.split(".")[0]; // removes .jpg, .png, etc.
-        });
-   const imgRes = await cloudinary.api.delete_resources(publicIds);
-   console.log(imgRes);
-   await Property.deleteOne({_id : id});
-   res.status(201).send("deleted successfully")
-    } catch (error) {
-        console.error("Delete Property Error:", error.message)
-        res.status(500).send("Server Error");
+const deleteProperty = async (req, res) => {
+  try {
+    const { id } = req.body;
+    const property = await Property.findById(id);
+
+    if (!property || !property.Images || !Array.isArray(property.Images)) {
+      return res.status(404).send("Property or images not found");
     }
-}   
+
+    // ✅ Correct way to extract public IDs
+    const publicIds = property.Images.map((url) => {
+      // Remove version and domain, extract only folder/filename
+      const withoutPrefix = url.split("/upload/")[1];
+      return withoutPrefix.split(".")[0]; // remove extension like .jpg
+    });
+
+    console.log("Extracted Public IDs:", publicIds);
+
+    const imgRes = await cloudinary.api.delete_resources(publicIds);
+    console.log("Cloudinary Response:", imgRes);
+
+    await Property.deleteOne({ _id: id });
+    res.status(201).send("Deleted successfully");
+  } catch (error) {
+    console.error("Delete Property Error:", error.message);
+    res.status(500).send("Server Error");
+  }
+};
+
 
 const updateProperty = async (req, res) => {
   try {
