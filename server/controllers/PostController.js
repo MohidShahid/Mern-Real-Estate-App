@@ -67,7 +67,12 @@ const deleteProperty = async(req , res)=>{
     try {
    const {id} = req.body;
    const property = await Property.findById(id);
-   const imgRes = await cloudinary.api.delete_resources(property.Images);
+   const publicIds = property.Images.map((url) => {
+            // Example: extract after 'upload/' and remove file extension
+            const parts = url.split("/upload/")[1];
+            return parts.split(".")[0]; // removes .jpg, .png, etc.
+        });
+   const imgRes = await cloudinary.api.delete_resources(publicIds);
    console.log(imgRes);
    await Property.deleteOne({_id : id});
    res.status(201).send("deleted successfully")
